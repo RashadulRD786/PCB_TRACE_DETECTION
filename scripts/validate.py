@@ -3,8 +3,14 @@ import argparse
 
 def main(args):
     model = YOLO(args.weights)
-    metrics = model.val(data=args.data, imgsz=args.imgsz)
 
+    metrics = model.val(
+        data=args.data,
+        imgsz=args.imgsz,
+        device=0
+    )
+
+    print("\nValidation Results:")
     print(metrics)
 
 if __name__ == "__main__":

@@ -11,7 +11,7 @@ def main(args):
         batch=args.batch,
         patience=args.patience,
         device=0,
-        project=args.project,
+        project= "../experiments",
         name=args.name
     )
 
