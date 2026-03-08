@@ -6,7 +6,8 @@ SMALL_THRESH = 32 * 32
 IOU_THRESH = 0.5
 
 gt_dir = "../datasets/HRIPCB/val/labels"
-pred_dir = "runs/detect/predict/labels"
+# pred_dir = "runs/detect/predict/labels"
+pred_dir = "runs/detect/runs/detect/predict/yolov8s_960_100/labels"
 
 def yolo_to_bbox(x, y, w, h):
     w *= IMG_SIZE
