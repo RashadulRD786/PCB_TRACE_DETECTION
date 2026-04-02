@@ -1,0 +1,112 @@
+# =============================================================================
+# PCB Defect Detection — Training Configuration
+# =============================================================================
+# Usage:
+#   Train a named experiment:
+#       python scripts/train.py --config configs/train_config.yaml --name yolov8x_640_100_epochs
+#
+#   Override a parameter on the fly:
+#       python scripts/train.py --config configs/train_config.yaml --name yolov8x_640_100_epochs --epochs 50
+#
+#   List all available experiment names:
+#       python scripts/train.py --config configs/train_config.yaml --list
+# =============================================================================
+
+# -----------------------------------------------------------------------
+# Shared defaults — applied to every experiment unless overridden below
+# -----------------------------------------------------------------------
+defaults:
+  data: datasets/HRIPCB/data.yaml
+  epochs: 100
+  imgsz: 640
+  batch: 16
+  patience: 20
+  device: 0
+  project: scripts/runs/experiments
+  workers: 8
+  amp: true
+  seed: 0
+
+# -----------------------------------------------------------------------
+# Experiment definitions
+# Each entry overrides only the fields that differ from defaults above.
+# -----------------------------------------------------------------------
+experiments:
+
+  # --- Phase 1: Baseline (20 epochs) -----------------------------------
+
+  yolov8s_960:
+    model: yolov8s.pt
+    imgsz: 960
+    epochs: 20
+    batch: 8
+
+  yolo11s_640:
+    model: yolo11s.pt
+    epochs: 20
+
+  yolo11m_640:
+    model: yolo11m.pt
+    epochs: 20
+
+  yolo26s_640:
+    model: yolo26s.pt
+    epochs: 20
+
+  # --- Phase 2: Extended Training (50 epochs) --------------------------
+
+  yolov8s_640_50_epochs:
+    model: yolov8s.pt
+    epochs: 50
+
+  yolov8m_640_50_epochs:
+    model: yolov8m.pt
+    epochs: 50
+
+  yolov8s_960_50_epochs:
+    model: yolov8s.pt
+    imgsz: 960
+    epochs: 50
+    batch: 8
+
+  yolov8m_960_50_epochs:
+    model: yolov8m.pt
+    imgsz: 960
+    epochs: 50
+    batch: 8
+
+  yolo26s_640_50_epochs:
+    model: yolo26s.pt
+    epochs: 50
+
+  # --- Phase 3: Full Training (100 epochs) -----------------------------
+
+  yolov8n_640_100_epochs:
+    model: yolov8n.pt
+    epochs: 100
+
+  yolov8s_640_100_epochs:
+    model: yolov8s.pt
+    epochs: 100
+
+  yolov8s_960_100_epochs:
+    model: yolov8s.pt
+    imgsz: 960
+    epochs: 100
+    batch: 8
+
+  yolov8m_640_100_epochs:
+    model: yolov8m.pt
+    epochs: 100
+
+  yolov8l_640_100_epochs:
+    model: yolov8l.pt
+    epochs: 100
+
+  yolov8x_640_100_epochs:           # Best overall (mAP50-95: 0.7665)
+    model: yolov8x.pt
+    epochs: 100
+
+  yolov11s_640_100_epochs:
+    model: yolo11s.pt
+    epochs: 100
